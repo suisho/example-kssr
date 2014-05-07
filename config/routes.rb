@@ -1,5 +1,6 @@
 Kssr::Application.routes.draw do
   mount Kss::Engine => '/styleguide' if Rails.env.development?
+  get '/styleguide/(:section)' => 'styleguide#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
