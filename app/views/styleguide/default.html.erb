@@ -1,0 +1,7 @@
+Use Default Template.
+
+<% start_with_sections(@section).each do |s| %>
+  <%= styleguide_block s do -%>
+    <div class="$modifier_class">Example</div>
+  <% end -%>
+<% end -%>
