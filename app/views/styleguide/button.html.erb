@@ -1,3 +1,7 @@
-<%= styleguide_block 'btn' do -%>
-  <a class="$modifier_class">Example Button</button>
+<%= styleguide_block 'Button.Basic' do -%>
+  <a class="$modifier_class">Example Button</a>
+<% end -%>
+
+<%= styleguide_extend_block "Button.Pattern.Unko", "Button.Basic" do -%>
+  <a class="$modifier_class">Example Button</a>
 <% end -%>

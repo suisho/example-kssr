@@ -1,19 +1,29 @@
 module StyleguideHelper
-=begin
-  include Kss::ApplicationHelper
-  def styleguide_block_with_rescue(section, &block)
-    begin
-      styleguide_block_without_rescue(section, &block)
-    rescue ArgumentError => e
-    end
-  end
-  alias_method_chain :styleguide_block , :rescue
-=end
-
-  def menu_list
-    styleguide.sections.keys.map{ |section|
-      section.split(".").first
+  def menu_list(sepalator=".")
+    styleguide.sections.keys.map{ |s|
+      s.split(sepalator).first
     }.uniq
   end
 
+  def start_with_sections(section)
+    styleguide.sections.keys.select{ |s|
+      s.downcase.start_with?(section.downcase)
+    }
+  end
+
+  def section_modifiers(section)
+    styleguide.section(section).modifiers.map{ |m|
+      m.class_name
+    }
+  end
+
+  # show section with parent modifier
+  def styleguide_extend_block(section, parent, &block)
+    block_html = capture(&block)
+    content =  section_modifiers(parent).map{ |m|
+      block_html.gsub("$modifier_class", m +" $modifier_class")
+    }.join
+    @section = styleguide.section(section)
+    render 'kss/shared/styleguide_block', :section => @section, :example_html => content
+  end
 end
