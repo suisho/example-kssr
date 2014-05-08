@@ -1,4 +1,5 @@
 module StyleguideHelper
+
   def menu_list(sepalator=".")
     styleguide.sections.keys.map{ |s|
       s.split(sepalator).first
@@ -21,9 +22,11 @@ module StyleguideHelper
   def styleguide_extend_block(section, parent, &block)
     block_html = capture(&block)
     content =  section_modifiers(parent).map{ |m|
-      block_html.gsub("$modifier_class", m +" $modifier_class")
-    }.join
+      block_html.gsub("$modifier_class", m +" $modifier_class").strip
+    }.join("\n")
     @section = styleguide.section(section)
     render 'kss/shared/styleguide_block', :section => @section, :example_html => content
   end
+
+
 end
