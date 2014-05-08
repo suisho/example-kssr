@@ -17,7 +17,9 @@
       <nav role="main" class="kss-nav">
         <ul>
           <li><%= link_to 'Home', kss.root_path %></li>
-          <li><%= link_to 'Styleguide', kss.styleguide_path %></li>
+          <% menu_list.each do |s| %>
+          <li><%= link_to s, "/styleguide/#{s.downcase}" %></li>
+          <% end %>
         </ul>
       </nav>
 
