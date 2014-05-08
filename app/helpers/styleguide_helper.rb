@@ -12,16 +12,26 @@ module StyleguideHelper
     }
   end
 
-  def section_modifiers(section)
-    styleguide.section(section).modifiers.map{ |m|
-      m.class_name
-    }
+  def section_modifiers(*sections)
+    sections.flatten.map{ |section|
+      styleguide.section(section).modifiers.map{ |m|
+        m.class_name
+      }
+    }.flatten
   end
 
   # show section with parent modifier
-  def styleguide_extend_block(section, parent, &block)
+  # section, [parents...], &block
+  # ex
+  # <%= styleguide_extend_block "Button.Pattern.Emphasis", "Button.Basic" do -%>
+  # or if some parents
+  # <%= styleguide_extend_block "Button.Pattern.Emphasis", "Button.Basic", "Button.Size" do -%>
+  def styleguide_extend_block(*args, &block)
+    section = args.shift
+    parents = args.dup
+
     block_html = capture(&block)
-    content =  section_modifiers(parent).map{ |m|
+    content =  section_modifiers(parents).map{ |m|
       block_html.gsub("$modifier_class", m +" $modifier_class").strip
     }.join("\n")
     @section = styleguide.section(section)
