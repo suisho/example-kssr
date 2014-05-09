@@ -21,15 +21,12 @@ module StyleguideHelper
   end
 
   # show section with parent modifier
-  # section, [parents...], &block
   # ex
   # <%= styleguide_extend_block "Button.Pattern.Emphasis", "Button.Basic" do -%>
   # or if some parents
   # <%= styleguide_extend_block "Button.Pattern.Emphasis", "Button.Basic", "Button.Size" do -%>
-  def styleguide_extend_block(*args, &block)
-    section = args.shift
-    parents = args.dup
-
+  def styleguide_extend_block(section, *parents, &block)
+    binding.pry
     block_html = capture(&block)
     content =  section_modifiers(parents).map{ |m|
       block_html.gsub("$modifier_class", m +" $modifier_class").strip
