@@ -26,7 +26,6 @@ module StyleguideHelper
   # or if some parents
   # <%= styleguide_extend_block "Button.Pattern.Emphasis", "Button.Basic", "Button.Size" do -%>
   def styleguide_extend_block(section, *parents, &block)
-    binding.pry
     block_html = capture(&block)
     content =  section_modifiers(parents).map{ |m|
       block_html.gsub("$modifier_class", m +" $modifier_class").strip
@@ -35,5 +34,12 @@ module StyleguideHelper
     render 'kss/shared/styleguide_block', :section => @section, :example_html => content
   end
 
+  def markdown(text)
+    @markdown ||= begin
+      renderer = Redcarpet::Render::HTML.new
+      @markdown = Redcarpet::Markdown.new(renderer)
+    end
+    @markdown.render(text).html_safe
+  end
 
 end
