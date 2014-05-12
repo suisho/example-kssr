@@ -27,8 +27,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 group :development do
-  gem 'kss'
-  gem 'kss-rails'
+  gem 'kss-rails', :git => "git@github.com:suisho/kss-rails.git"
   gem 'pry-rails'
 end
 group :doc do
