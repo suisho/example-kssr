@@ -27,14 +27,13 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 group :development do
-  gem 'kss-rails', :git => "git@github.com:suisho/kss-rails.git"
+  gem 'kss-rails', :git => "git@github.com:suisho/kss-rails.git", :branch => 'master'
   gem 'pry-rails'
 end
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-gem 'redcarpet'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

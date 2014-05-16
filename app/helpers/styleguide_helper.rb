@@ -34,12 +34,4 @@ module StyleguideHelper
     render 'kss/shared/styleguide_block', :section => @section, :example_html => content
   end
 
-  def markdown(text)
-    @markdown ||= begin
-      renderer = Redcarpet::Render::HTML.new
-      @markdown = Redcarpet::Markdown.new(renderer)
-    end
-    @markdown.render(text).html_safe
-  end
-
 end

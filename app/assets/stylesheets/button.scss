@@ -1,12 +1,59 @@
-// button
+// Experimental: A feed of activity items. Within each <section.feed>, there should be many
+// <article>s which are the  feed items.
+//
+// - あああ
+// - いいい
 //
 // .btn       - ベース
 // .btn:hover - hov
 //
+//
 // styleguide Button.Basic
 .btn{
-  color : blue;
+  display : block;
+  color : white;
+  background : blue;
   &:hover{
-    color: red;
+    background : skyblue;
   }
 }
+
+/**
+大きさ色々
+
+.magnum     - big!
+.takenoko   - Oh, boy
+
+styleguide Button.Size
+*/
+
+/*
+
+.btn-good - うんこ色のボタン
+
+styleguide Button.Pattern.Good
+*/
+.btn-good{
+  background: #443333;
+}
+
+// Form
+//
+// .form   - ベース
+//
+// styleguide Form.Basic
+.form {}
+
+// Form
+//
+// .form   - ベース
+//
+// styleguide Form.Modifier
+.form.foo{}
+
+// Hoo
+//
+// .form   - ベース
+//
+// styleguide Hoo.Modifier
+.hoo{}
